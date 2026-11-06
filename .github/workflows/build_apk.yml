@@ -3,12 +3,6 @@ name: Build Release Android APK
 on:
   push:
     branches: [ "main", "master" ]
-  workflow_dispatch:
-    inputs:
-      backend_url:
-        description: 'Default Backend URL'
-        required: false
-        default: 'http://10.0.2.2:3000'
 
 jobs:
   build-android-apk:
@@ -17,7 +11,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -27,20 +21,14 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          cache: true
 
-      - name: Ensure Android platform wrapper files exist
-        run: flutter create . --platforms=android
-
-      - name: Install Flutter dependencies
+      - name: Get dependencies
         run: flutter pub get
 
-      - name: Build Release APK
-        run: |
-          BACKEND_URL="${{ github.event.inputs.backend_url || 'http://10.0.2.2:3000' }}"
-          flutter build apk --release --dart-define=AI_BACKEND_URL="$BACKEND_URL"
+      - name: Build APK
+        run: flutter build apk --release
 
-      - name: Upload Release APK Artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: ai-romantic-companion-release-apk
