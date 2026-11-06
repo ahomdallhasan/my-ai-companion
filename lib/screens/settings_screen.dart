@@ -217,8 +217,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   minLines: 4,
                   maxLines: 9,
                   decoration: const InputDecoration(
-                    hintText: '- বৃষ্টির দিনে কফি খেতে ভালোবাসে
-- বৃহস্পতিবার অফিসে কাজের চাপ থাকে...',
+                    hintText: 'যেমন: বৃষ্টির দিনে কফি খেতে ভালোবাসে\nবৃহস্পতিবার অফিসে কাজের চাপ থাকে',
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -232,7 +231,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   controller: backendUrlController,
                   decoration: const InputDecoration(
                     labelText: 'Backend URL',
-                    hintText: 'https://your-vercel-backend.vercel.app বা http://192.168.1.5:3000',
+                    hintText: 'https://your-vercel-backend.vercel.app',
                     border: OutlineInputBorder(),
                   ),
                 ),
