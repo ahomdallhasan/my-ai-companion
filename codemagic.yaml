@@ -1,0 +1,15 @@
+workflows:
+  android-workflow:
+    name: Android Release APK
+    max_build_duration: 30
+    environment:
+      flutter: stable
+      android_signing:
+        - release_keystore
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
